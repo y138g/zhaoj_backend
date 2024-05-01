@@ -1,14 +1,10 @@
 package com.itgr.zhaoj.model.dto.question;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.itgr.zhaoj.common.PageRequest;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -56,7 +52,7 @@ public class QuestionQueryRequest extends PageRequest implements Serializable {
      */
     private Integer accepted;
 
-    /** 
+    /**
      * 点赞数
      */
     private Integer thumbNum;

@@ -6,12 +6,12 @@ import lombok.Data;
  * @author ygking
  */
 @Data
-public class judgeInfo {
+public class JudgeInfo {
 
 
     /**
      * 程序执行信息
-     */ 
+     */
     private String message;
 
     /**
@@ -23,7 +23,7 @@ public class judgeInfo {
      * 内存占用（kb）
      */
     private Long memory;
-    
+
     /**
      * 栈占用(kb)
      */
