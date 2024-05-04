@@ -11,7 +11,6 @@ import com.itgr.zhaoj.constant.UserConstant;
 import com.itgr.zhaoj.exception.BusinessException;
 import com.itgr.zhaoj.exception.ThrowUtils;
 import com.itgr.zhaoj.model.dto.question.*;
-import com.itgr.zhaoj.model.dto.user.UserQueryRequest;
 import com.itgr.zhaoj.model.entity.Question;
 import com.itgr.zhaoj.model.entity.User;
 import com.itgr.zhaoj.model.vo.QuestionVO;
@@ -145,7 +144,30 @@ public class QuestionController {
     }
 
     /**
-     * 根据 id 获取
+     * 根据 id 获取(不脱敏)
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/get")
+    public BaseResponse<Question> getQuestionById(long id, HttpServletRequest request) {
+        if (id <= 0) {
+            throw new BusinessException(ErrorCode.PARAMS_ERROR);
+        }
+        Question question = questionService.getById(id);
+        if (question == null) {
+            throw new BusinessException(ErrorCode.NOT_FOUND_ERROR);
+        }
+        User loginUser = userService.getLoginUser(request);
+        if (!question.getUserId().equals(loginUser.getId()) && userService.isAdmin(loginUser)) {
+            throw new BusinessException(ErrorCode.NO_AUTH_ERROR);
+        }
+        return ResultUtils.success(question);
+    }
+
+
+    /**
+     * 根据 id 获取(脱敏)
      *
      * @param id
      * @return
