@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itgr.zhaoj.common.ErrorCode;
 import com.itgr.zhaoj.constant.CommonConstant;
 import com.itgr.zhaoj.exception.BusinessException;
+import com.itgr.zhaoj.judge.JudgeService;
 import com.itgr.zhaoj.mapper.QuestionSubmitMapper;
 import com.itgr.zhaoj.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.itgr.zhaoj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
@@ -21,11 +22,12 @@ import com.itgr.zhaoj.service.UserService;
 import com.itgr.zhaoj.utils.SqlUtils;
 import org.apache.commons.collections4.CollectionUtils;
 import org.apache.commons.lang3.ObjectUtils;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 /**
@@ -43,6 +45,10 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
 
     @Resource
     private UserService userService;
+
+    @Resource
+    @Lazy
+    private JudgeService judgeService;
 
     /**
      * 题目提交
@@ -80,8 +86,12 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         if (!save) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "数据插入异常！");
         }
-        //todo 执行判题服务
-        return questionSubmit.getId();
+        //执行判题服务
+        Long questionSubmitId = questionSubmit.getId();
+        CompletableFuture.runAsync(() -> {
+            judgeService.doJudge(questionSubmitId);
+        });
+        return questionSubmitId;
     }
 
     /**

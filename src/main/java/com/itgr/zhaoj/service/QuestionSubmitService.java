@@ -2,17 +2,12 @@ package com.itgr.zhaoj.service;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.itgr.zhaoj.model.dto.question.QuestionQueryRequest;
+import com.baomidou.mybatisplus.extension.service.IService;
 import com.itgr.zhaoj.model.dto.questionsubmit.QuestionSubmitAddRequest;
 import com.itgr.zhaoj.model.dto.questionsubmit.QuestionSubmitQueryRequest;
-import com.itgr.zhaoj.model.entity.Question;
 import com.itgr.zhaoj.model.entity.QuestionSubmit;
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.itgr.zhaoj.model.entity.User;
 import com.itgr.zhaoj.model.vo.QuestionSubmitVO;
-import com.itgr.zhaoj.model.vo.QuestionVO;
-
-import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author ygking
