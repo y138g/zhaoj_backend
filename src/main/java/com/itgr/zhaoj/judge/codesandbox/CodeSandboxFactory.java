@@ -11,6 +11,11 @@ import com.itgr.zhaoj.judge.codesandbox.impl.ThirdPartyCodeSandbox;
 public class CodeSandboxFactory {
 
 
+    /**
+     * 创建代码沙箱事例
+     * @param type 沙箱类型
+     * @return 沙箱事例
+     */
     public static CodeSandbox newInstance(String type) {
         switch (type) {
             case "example":

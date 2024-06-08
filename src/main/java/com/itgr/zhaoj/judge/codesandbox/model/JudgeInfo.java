@@ -1,4 +1,4 @@
-package com.itgr.zhaoj.model.dto.questionsubmit;
+package com.itgr.zhaoj.judge.codesandbox.model;
 
 import lombok.Data;
 
