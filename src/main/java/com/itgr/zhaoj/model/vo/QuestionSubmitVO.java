@@ -1,19 +1,12 @@
 package com.itgr.zhaoj.model.vo;
 
 import cn.hutool.json.JSONUtil;
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableLogic;
-import com.itgr.zhaoj.model.dto.question.JudgeConfig;
-import com.itgr.zhaoj.model.dto.questionsubmit.JudgeInfo;
-import com.itgr.zhaoj.model.entity.Question;
+import com.itgr.zhaoj.judge.codesandbox.model.JudgeInfo;
 import com.itgr.zhaoj.model.entity.QuestionSubmit;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;
 
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author ygking

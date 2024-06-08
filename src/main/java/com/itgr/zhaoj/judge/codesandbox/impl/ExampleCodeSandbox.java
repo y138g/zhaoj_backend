@@ -3,7 +3,7 @@ package com.itgr.zhaoj.judge.codesandbox.impl;
 import com.itgr.zhaoj.judge.codesandbox.CodeSandbox;
 import com.itgr.zhaoj.judge.codesandbox.model.ExecuteCodeRequest;
 import com.itgr.zhaoj.judge.codesandbox.model.ExecuteCodeResponse;
-import com.itgr.zhaoj.model.dto.questionsubmit.JudgeInfo;
+import com.itgr.zhaoj.judge.codesandbox.model.JudgeInfo;
 import com.itgr.zhaoj.model.enums.JudgeInfoMessageEnum;
 import com.itgr.zhaoj.model.enums.QuestionSubmitStatusEnum;
 

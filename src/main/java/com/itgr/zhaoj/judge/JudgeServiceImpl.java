@@ -12,7 +12,7 @@ import com.itgr.zhaoj.judge.strategy.DefaultJudgeStrategy;
 import com.itgr.zhaoj.judge.strategy.JudgeContext;
 import com.itgr.zhaoj.judge.strategy.JudgeStrategy;
 import com.itgr.zhaoj.model.dto.question.JudgeCase;
-import com.itgr.zhaoj.model.dto.questionsubmit.JudgeInfo;
+import com.itgr.zhaoj.judge.codesandbox.model.JudgeInfo;
 import com.itgr.zhaoj.model.entity.Question;
 import com.itgr.zhaoj.model.entity.QuestionSubmit;
 import com.itgr.zhaoj.model.enums.QuestionSubmitStatusEnum;

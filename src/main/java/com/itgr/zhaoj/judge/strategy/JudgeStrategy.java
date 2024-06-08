@@ -1,6 +1,6 @@
 package com.itgr.zhaoj.judge.strategy;
 
-import com.itgr.zhaoj.model.dto.questionsubmit.JudgeInfo;
+import com.itgr.zhaoj.judge.codesandbox.model.JudgeInfo;
 
 /**
  * @author ygking

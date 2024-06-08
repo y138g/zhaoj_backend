@@ -1,7 +1,7 @@
 package com.itgr.zhaoj.judge.strategy;
 
 import com.itgr.zhaoj.model.dto.question.JudgeCase;
-import com.itgr.zhaoj.model.dto.questionsubmit.JudgeInfo;
+import com.itgr.zhaoj.judge.codesandbox.model.JudgeInfo;
 import com.itgr.zhaoj.model.entity.Question;
 import com.itgr.zhaoj.model.entity.QuestionSubmit;
 import lombok.Data;
