@@ -18,7 +18,7 @@ public class RemoteCodeSandbox implements CodeSandbox {
     public ExecuteCodeResponse executeCode(ExecuteCodeRequest executeCodeRequest) {
         System.out.println("远程代码沙箱");
         // todo 改成远程服务器地址
-        String url = "http://localhost:8080/executeCode";
+        String url = "http://192.168.1.3:8080/executeCode";
         String json = JSONUtil.toJsonStr(executeCodeRequest);
         String responseStr = HttpUtil.createPost(url)
                 .body(json)

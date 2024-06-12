@@ -24,8 +24,8 @@ public class JudgeInfo {
      */
     private Long memory;
 
-    /**
-     * 栈占用(kb)
-     */
-    private Long stack;
+//    /**
+//     * 栈占用(kb)
+//     */
+//    private Long stack;
 }
