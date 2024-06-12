@@ -38,9 +38,6 @@ import java.util.stream.Collectors;
 public class QuestionServiceImpl extends ServiceImpl<QuestionMapper, Question>
     implements QuestionService{
 
-
-    private final static Gson GSON = new Gson();
-
     @Resource
     private UserService userService;
 
