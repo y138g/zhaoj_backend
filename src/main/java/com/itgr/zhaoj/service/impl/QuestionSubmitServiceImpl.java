@@ -1,6 +1,7 @@
 package com.itgr.zhaoj.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.itgr.zhaoj.common.ErrorCode;
@@ -86,6 +87,11 @@ public class QuestionSubmitServiceImpl extends ServiceImpl<QuestionSubmitMapper,
         if (!save) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "数据插入异常！");
         }
+        //题目提交数+1
+        UpdateWrapper<Question> updateWrapper = new UpdateWrapper<>();
+        updateWrapper.eq("id", questionId).setSql("submitNum = submitNum + 1");
+        postService.update(null, updateWrapper);
+        //
         //执行判题服务
         Long questionSubmitId = questionSubmit.getId();
         CompletableFuture.runAsync(() -> {

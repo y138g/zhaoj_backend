@@ -1,6 +1,7 @@
 package com.itgr.zhaoj.judge;
 
 import cn.hutool.json.JSONUtil;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.itgr.zhaoj.common.ErrorCode;
 import com.itgr.zhaoj.exception.BusinessException;
 import com.itgr.zhaoj.judge.codesandbox.CodeSandbox;
@@ -15,6 +16,7 @@ import com.itgr.zhaoj.model.dto.question.JudgeCase;
 import com.itgr.zhaoj.judge.codesandbox.model.JudgeInfo;
 import com.itgr.zhaoj.model.entity.Question;
 import com.itgr.zhaoj.model.entity.QuestionSubmit;
+import com.itgr.zhaoj.model.enums.JudgeInfoMessageEnum;
 import com.itgr.zhaoj.model.enums.QuestionSubmitStatusEnum;
 import com.itgr.zhaoj.service.QuestionService;
 import com.itgr.zhaoj.service.QuestionSubmitService;
@@ -47,7 +49,8 @@ public class JudgeServiceImpl implements JudgeService {
         if (questionSubmit == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "提交信息不存在");
         }
-        Question question = questionService.getById(questionSubmit.getQuestionId());
+        Long questionId = questionSubmit.getQuestionId();
+        Question question = questionService.getById(questionId);
         if (question == null) {
             throw new BusinessException(ErrorCode.NOT_FOUND_ERROR, "题目不存在");
         }
@@ -99,7 +102,12 @@ public class JudgeServiceImpl implements JudgeService {
         if (!update) {
             throw new BusinessException(ErrorCode.SYSTEM_ERROR, "题目更新错误");
         }
-        //todo 更新题目提交数
+        // 更新题目通过数
+        if (judgeInfo.getMessage().equals(JudgeInfoMessageEnum.ACCEPTED.getValue())) {
+            UpdateWrapper<Question> updateWrapper = new UpdateWrapper<>();
+            updateWrapper.eq("id", questionId).setSql("accepted = accepted + 1");
+            questionService.update(null, updateWrapper);
+        }
         return questionSubmitService.getById(questionSubmitId);
     }
 }
